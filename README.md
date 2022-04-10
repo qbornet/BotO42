@@ -14,5 +14,9 @@ The bot is made for 42 student, this is pointless if you are not a 42 student, i
 This is a full guide to install plus hosting the bot, read it it's important don't scan through it you will probably miss important information
 - [INSTALL](INSTALL.md)
 
+## Trouble
+
+If you have, any trouble installing create an issue or send a message via slack @qbornet
+
 ## Author
 [@qbornet]
