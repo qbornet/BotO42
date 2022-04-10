@@ -97,20 +97,26 @@ def start_routine():
                     break
 
                 if (abs(time.localtime()[4] - time_token) >= 10):
-                    time_token = time.localtime()[4]
-                    session['token'] = api42.fetch_token(token_url=token_url, auth=auth)
-                    if (session['token'] is None):
-                        print("Didn't receive a token")
-                        _thread.exit()
+                    try:
+                        time_token = time.localtime()[4]
+                        session['token'] = api42.fetch_token(token_url=token_url, auth=auth)
+                    except:
+                        print("Error with token")
+                        raise
 
-                r = api42.get(f'https://api.intra.42.fr/v2/campus/1/users?filter[login]={param}')
-                if (r is None):
-                    print("Api return None exiting thread")
-                    _thread.exit()
+                try:
+                    r = api42.get(f'https://api.intra.42.fr/v2/campus/1/users?filter[login]={param}')
+                except:
+                    print("Error with response")
+                    raise
 
                 res = r.json()
+                for x in res:
+                    if (time_table.get(x['login']) is None):
+                        time_table.__setitem__(x['login'], None)
+
                 for user in res:
-                    if (time_table.get(user['login']) is None and user['location'] is not None):
+                    if (time_table[user['login']] is None and user['location'] is not None):
                         time_table.__setitem__(user['login'], time.localtime()[3])
                         queue.put(user)
                         queue.put(index)
@@ -125,11 +131,12 @@ def start_routine():
                         j += 1
 
             if (abs(time.localtime()[4] - time_token) >= 10):
-                time_token = time.localtime()[4]
-                session['token'] = api42.fetch_token(token_url=token_url, auth=auth)
-                if (session['token'] is None):
-                    print("Didn't receive a token")
-                    _thread.exit()
+                try:
+                    time_token = time.localtime()[4]
+                    session['token'] = api42.fetch_token(token_url=token_url, auth=auth)
+                except:
+                    print("Error with token")
+                    raise
 
             time.sleep(10)
         _thread.exit()
@@ -176,6 +183,7 @@ def parser(msg):
     command_3 = "!help"
     if (msg.content.find(command_3) >= 0):
         return (3)
+
     if (users_table.get(author.discriminator) is None):
         users_table.__setitem__(author.discriminator, list())
         list_new = users_table[author.discriminator]
@@ -232,7 +240,7 @@ async def alerts_users():
         user = queue.get()
         index = queue.get()
         channel = client.get_channel(chan_id)
-        await channel.send(f"<@{lst_users[index]}> Gobelin {user['login']} in {user['location']}")
+        await channel.send(f"<@{lst_users[index]}> {user['login']} in {user['location']}")
 
 
 @client.event
@@ -250,7 +258,7 @@ async def on_ready():
             break
 
     print(f'Bot start {client.user} connection to {guild.name}(id: {guild.id})\n')
-    await client.get_channel(chan_id).send('Hello, command are !add login42, !del login42')
+    await client.get_channel(chan_id).send('Hello, command are !add login42, !del login42, !help for futher information')
     alerts_users.start()
     launcher()
 
