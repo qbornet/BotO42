@@ -232,7 +232,7 @@ async def alerts_users():
         user = queue.get()
         index = queue.get()
         channel = client.get_channel(chan_id)
-        await channel.send(f"<@{lst_users[index]}> Gobelin {user['login']} in {user['location']}")
+        await channel.send(f"<@{lst_users[index]}> {user['login']} in {user['location']}")
 
 
 @client.event
