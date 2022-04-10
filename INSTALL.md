@@ -149,11 +149,14 @@ Remember change any other stuff needed (link, endpoint, ...) if the behavior of 
 Once this is done you can run the bot:
 `python3 boto.py`
 
+
 Now everything should work we have 3 command !help, !add, !del just check !help for further information,
 
 Next step is the hosting so you don't have to run the script on your PC if you have a different way of hosting or you think it's fine that the script 24/7 on your pc
 
 The Installation Guide is finish for you for the other, we will setup heroku (without paying anything we will be able to run the bot)
+
+Before going to the next part type `deactivate` this will quit venv
 
 ## Hosting
 
