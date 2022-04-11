@@ -9,6 +9,12 @@
 This is a discord bot.
 The bot is made for 42 student, this is pointless if you are not a 42 student, if you want to contribute to this project contact me via slack @qbornet
 
+### About the bot
+
+The bot, give the location of your friends inside the school via discord, this is better then checking stud42 all the time, you get notify 
+
+automatically as soon as the person on the list is logged on campus
+
 ## Installation
 
 This is a full guide to install plus hosting the bot, read it it's important don't scan through it you will probably miss important information
