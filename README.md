@@ -11,9 +11,8 @@ The bot is made for 42 student, this is pointless if you are not a 42 student, i
 
 ### About the bot
 
-The bot, give the location of your friends inside the school via discord, this is better then checking stud42 all the time, you get notify 
-
-automatically as soon as the person on the list is logged on campus
+The bot, give the location of your friends inside the school via discord, this is better then checking stud42 all the time,
+you get notify automatically as soon as the person on the list is logged on campus
 
 ## Installation
 
