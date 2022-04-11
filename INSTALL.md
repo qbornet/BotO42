@@ -9,7 +9,7 @@ To check your python version: `python3 -V`
 ### Important
 **You will do this part only if you want to have the bot running locally or if you are running on a different hosting plateform then heroku !**
 
-`pip3 -r requirements.txt`
+`pip3 install -r requirements.txt`
 
 ## Begining
 
