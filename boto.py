@@ -154,6 +154,8 @@ def parser_command(command, dis, _action):
     command = command[start + 1:]
     if (len(command) >= 32):
         return (0)
+    if (not command.isalpha()):
+        return (0)
 
     lst_dis = users_table[dis]
     if (action == 1):
