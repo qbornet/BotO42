@@ -50,10 +50,15 @@ you will have to change the url and endpoint probably. (E.g. https://api.intra.4
 ```
 git clone https://github.com/qbornet/BotO42.git
 cd BotO42
+python3 -m venv env
+source env/bin/activate
+python3 -m pip install -r requirements.txt
 export UID_42="your_token"
 export SECRET_42="your_token"
 python3 test.py
+deactivate (when finished with the test.py)
 ```
+If you have trouble with the installation of python venv check [Testing](#testing)
 
 The output would be like this **[index]: campus_id campus_name / campus_website** find your campus and remember your campus id and it's done now we will have to get the api key of Discord. 
 
