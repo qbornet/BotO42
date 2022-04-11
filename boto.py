@@ -141,6 +141,31 @@ def start_routine():
             time.sleep(10)
         _thread.exit()
 
+def parser_login(login):
+    if (len(login) >= 32):
+        return (1)
+
+    count = 0
+    valid = login.find("-")
+    if (valid >= 0):
+        if (valid == 0 or valid == (len(login) - 1)):
+            return (1)
+        valid -= 1
+        for i in login:
+            if (i.isalpha()):
+                count += 1
+        cpy = login[valid:]
+        if (cpy[0].isalpha() and cpy[2].isalpha() and count == (len(login) - 1)):
+                valid = 1
+
+    elif (valid == -1):
+        if (login.isalpha()):
+            valid = 1
+
+    if (valid == 1):
+        return (0)
+    return (1)
+
 def parser_command(command, dis, _action):
     global users_table
     global action
@@ -152,9 +177,7 @@ def parser_command(command, dis, _action):
         return (0)
 
     command = command[start + 1:]
-    if (len(command) >= 32):
-        return (0)
-    if (not command.isalpha()):
+    if (parser_login(command)):
         return (0)
 
     lst_dis = users_table[dis]
