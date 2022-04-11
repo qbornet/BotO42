@@ -121,11 +121,11 @@ def start_routine():
                         queue.put(user)
                         queue.put(index)
                     elif (time_table[user['login']] is not None and user['location'] is None):
-                        if ((abs(time.localtime()[3] - time_table[user['login']])) >= 2 or
-                                time.localtime()[2] > day and abs(time.localtime()[3] - time_table[user['login']]) >= 2):
+                        if ((abs(time.localtime()[3] - time_table[user['login']])) >= 2 or time.localtime()[2] > day):
                             time_table.__setitem__(user['login'], None)
                             day = time.localtime()[2]
-                    else:
+                    elif (time_table[user['login']] is not None and user['location'] is not None):
+                        time_table.__setitem__(user['login'], time.localtime()[3])
                         print(f'[{j}] {users_table}', end=" : ")
                         print(time_table)
                         j += 1
