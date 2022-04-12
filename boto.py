@@ -104,12 +104,9 @@ def start_routine():
                         print("Error with token")
                         raise
 
-                try:
-                    r = api42.get(f'https://api.intra.42.fr/v2/campus/1/users?filter[login]={param}')
-                except:
-                    print("Error with response")
-                    raise
-
+                r = api42.get(f'https://api.intra.42.fr/v2/campus/1/users?filter[login]={param}')
+                if (r.status_code != 200):
+                    break
                 res = r.json()
                 for x in res:
                     if (time_table.get(x['login']) is None):
