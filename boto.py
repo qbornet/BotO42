@@ -70,11 +70,11 @@ def start_routine():
         api42 = OAuth2Session(client=_client)
         time_token = time.localtime()[4]
         day = time.localtime()[2]
-        token = api42.fetch_token(token_url=token_url, auth=auth)
-        if (token is None):
-            print("Didn't receive a token")
+        try:
+            session['token'] = api42.fetch_token(token_url=token_url, auth=auth)
+        except:
             _thread.exit()
-        session['token'] = token
+            raise
 
         while (1):
             j = 0
@@ -132,7 +132,7 @@ def start_routine():
                     time_token = time.localtime()[4]
                     session['token'] = api42.fetch_token(token_url=token_url, auth=auth)
                 except:
-                    print("Error with token")
+                    _thread.exit()
                     raise
 
             time.sleep(10)
